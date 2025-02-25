@@ -12,14 +12,13 @@ app.use(cors());
 // Import Routes
 const taskRoutes = require("./routes/taskRoutes");
 
+// Use Routes
+app.use("/api", taskRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
-
-// Use Routes
-app.use("/api", taskRoutes);
 
 app.get("/", (req, res) => {
   res.send("Task management server is running.");
